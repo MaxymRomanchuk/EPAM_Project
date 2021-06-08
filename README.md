@@ -1,1 +1,1 @@
-EPAM Course project
+EPAM Python Course project

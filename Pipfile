@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-restful = "*"
+flask-marshmallow = "*"
+flask-sqlalchemy = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+flask-migrate = "*"
+marshmallow-sqlalchemy = "*"
+pytest = "*"
+
+[dev-packages]
+faker = "*"
+
+[requires]
+python_version = "3.9"
