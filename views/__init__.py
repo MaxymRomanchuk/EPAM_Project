@@ -13,7 +13,7 @@ app.config.from_object(config.Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = Api(app)
-CORS(app=app)
+cors = CORS(app=app)
 
 
 @app.route('/')
@@ -36,6 +36,15 @@ def swagger():
     Renders swagger UI
     '''
     return render_template('swaggerui.html')
+
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers',
+                         'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    return response
 
 
 from . import routes
