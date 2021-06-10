@@ -13,6 +13,7 @@ psycopg2-binary = "*"
 flask-migrate = "*"
 marshmallow-sqlalchemy = "*"
 pytest = "*"
+flask-cors = "*"
 
 [dev-packages]
 faker = "*"
