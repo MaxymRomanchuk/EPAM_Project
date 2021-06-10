@@ -4,6 +4,13 @@ from views import db
 
 
 class Employee(db.Model):
+    '''
+    Employee model
+
+
+    Has 5 parameters: employee_name, date_of_birth, salary (required)
+    and uuid (optional)
+    '''
     __tablename__ = 'employee'
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(db.String(36), unique=True)
@@ -12,7 +19,7 @@ class Employee(db.Model):
     salary = db.Column(db.Integer, nullable=False)
     department = db.Column(db.Integer, db.ForeignKey('department.id'))
 
-    def __init__(self, employee_name, date_of_birth, salary):
+    def __init__(self, employee_name: str, date_of_birth, salary: int):
         self.uuid = str(uuid.uuid4())
         self.employee_name = employee_name
         self.date_of_birth = date_of_birth

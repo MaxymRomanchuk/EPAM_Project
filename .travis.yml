@@ -12,8 +12,8 @@ install:
   - pipenv install coveralls
 
 script:
-  - python -m pytest test/
+  - python -m pytest tests/
   - coverage run --source="./" -m pytest
-  - pycodestyle ./ --ignore=E722,E501,E402
+  - pycodestyle ./ --ignore=E722,E501,E402 --exclude="./migrations"
 
 after_success: coveralls

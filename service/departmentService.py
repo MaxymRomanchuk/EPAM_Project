@@ -2,6 +2,9 @@ from models.department import Department
 
 
 class DepartmentService:
+    '''
+    Static class for Department table query logic
+    '''
     @staticmethod
     def fetch_all(session):
         return session.query(Department).all()

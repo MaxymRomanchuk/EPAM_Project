@@ -25,8 +25,8 @@ class TestDepartments:
                   ) as mock_session_commit:
             client = app.test_client()
             data = {
-                    'name': 'Trainspotting'
-                }
+                'name': 'Trainspotting'
+            }
             response = client.post('/departments', data=json.dumps(data),
                                    content_type='application/json')
 
@@ -39,7 +39,7 @@ class TestDepartments:
     def test_update_department(self):
         with patch(
             'service.departmentService.DepartmentService.fetch_by_uuid'
-            ) as mock_fetch,\
+        ) as mock_fetch,\
             patch('views.db.session.add',
                   autospec=True) as mock_session_add, \
             patch('views.db.session.commit',
@@ -47,13 +47,13 @@ class TestDepartments:
             client = app.test_client()
             mock_fetch.return_value = FakeDepartment()
             data = {
-                    'name': 'Trainspotting'
-                }
+                'name': 'Trainspotting'
+            }
             response = client.put(
                 '/department/1',
                 data=json.dumps(data),
                 content_type='application/json'
-                )
+            )
 
             mock_session_add.assert_called_once()
             mock_session_commit.assert_called_once()
@@ -65,7 +65,7 @@ class TestDepartments:
     def test_delete_department(self):
         with patch(
             'service.departmentService.DepartmentService.fetch_by_uuid'
-            ) as mock_fetch,\
+        ) as mock_fetch,\
             patch(
                 'views.db.session.delete',
                 autospec=True) as mock_session_delete, \

@@ -7,6 +7,12 @@ from service.employeeService import EmployeeService
 
 
 class EmployeeAPI(Resource):
+    '''
+    Employee Resourse
+
+
+    Supports GET (with UUID and without), POST, PUT and DELETE requests
+    '''
     schema = EmployeeSchema()
     service = EmployeeService
 
@@ -32,7 +38,7 @@ class EmployeeAPI(Resource):
     def put(self, uuid):
         employee = self.service.fetch_by_uuid(db.session, uuid)
         if(not employee):
-            return {'message': "wrong data..."}, 400
+            return {'message': "Employee uuid not found..."}, 404
         else:
             try:
                 employee = self.schema.load(request.json, instance=employee,
