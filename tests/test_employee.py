@@ -25,15 +25,15 @@ class TestEmployees:
                   autospec=True) as mock_session_commit:
             client = app.test_client()
             data = {
-                    'employee_name': 'Jack Son',
-                    'date_of_birth': "2011-11-11",
-                    'salary': 500
-                }
+                'employee_name': 'Jack Son',
+                'date_of_birth': "2011-11-11",
+                'salary': 500
+            }
             response = client.post(
                 '/employees',
                 data=json.dumps(data),
                 content_type='application/json'
-                )
+            )
 
             print(response.json)
             mock_session_add.assert_called_once()
@@ -45,7 +45,7 @@ class TestEmployees:
     def test_update_employee(self):
         with patch(
             'service.employeeService.EmployeeService.fetch_by_uuid'
-            ) as mock_fetch,\
+        ) as mock_fetch,\
                 patch('views.db.session.add',
                       autospec=True) as mock_session_add, \
                 patch('views.db.session.commit',
@@ -54,15 +54,15 @@ class TestEmployees:
             client = app.test_client()
             mock_fetch.return_value = FakeEmployee()
             data = {
-                    'employee_name': 'Jack Son',
-                    'date_of_birth': "2011-11-11",
-                    'salary': 500
-                }
+                'employee_name': 'Jack Son',
+                'date_of_birth': "2011-11-11",
+                'salary': 500
+            }
             response = client.put(
                 '/employee/1',
                 data=json.dumps(data),
                 content_type='application/json'
-                )
+            )
 
             print(response.json)
             mock_session_add.assert_called_once()
@@ -75,7 +75,7 @@ class TestEmployees:
     def test_delete_employee(self):
         with patch(
             'service.employeeService.EmployeeService.fetch_by_uuid'
-            ) as mock_fetch,\
+        ) as mock_fetch,\
                 patch('views.db.session.delete',
                       autospec=True) as mock_session_delete, \
                 patch('views.db.session.commit',
