@@ -3,6 +3,9 @@ from models.employee import Employee
 
 
 class EmployeeSchema(SQLAlchemyAutoSchema):
+    '''
+    AutoSchema for EmployeeAPI request validation
+    '''
     class Meta:
         model = Employee
         exclude = ['id']

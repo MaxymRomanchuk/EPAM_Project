@@ -3,6 +3,9 @@ from models.department import Department
 
 
 class DepartmentSchema(SQLAlchemyAutoSchema):
+    '''
+    AutoSchema for DepartmentAPI request validation
+    '''
     class Meta:
         model = Department
         exclude = ['id']

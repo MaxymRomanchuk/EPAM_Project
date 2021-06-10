@@ -2,6 +2,9 @@ from models.employee import Employee
 
 
 class EmployeeService:
+    '''
+    Static class for Employee table query logic
+    '''
     @staticmethod
     def fetch_all(session):
         return session.query(Employee).all()

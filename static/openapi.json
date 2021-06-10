@@ -1,0 +1,414 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Department App API example made with Flask",
+    "version": "v 1.0",
+    "title": "Department App",
+    "contact": {
+      "email": "maximus234786@gmail.com"
+    }
+  },
+  "host": "127.0.0.1:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "employees",
+      "description": "Employees list"
+    },
+    {
+      "name": "departments",
+      "description": "Departments list"
+    },
+    {
+      "name": "employee",
+      "description": "Employee manipulation"
+    },
+    {
+      "name": "department",
+      "description": "Department manipulation"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/employees": {
+      "get": {
+        "tags": [
+          "employees"
+        ],
+        "summary": "Get Employees list",
+        "description": "Gel list with all employees in DB",
+        "operationId": "getEmployees",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Employee"
+              }
+            }
+          },
+          "404": {
+            "description": "DB is empty"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "employees"
+        ],
+        "summary": "Add a new employee",
+        "description": "",
+        "operationId": "addEmployee",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "employee",
+            "description": "Employee object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/employee/{uuid}": {
+      "get": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Find employee by ID",
+        "description": "Returns a single employee",
+        "operationId": "getEmployeeById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "ID of employee",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          },
+          "404": {
+            "description": "Employee not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Update an existing employee",
+        "description": "",
+        "operationId": "updateEmployee",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "ID of employee",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Employee",
+            "description": "Employee object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Wrong data"
+          },
+          "404": {
+            "description": "Invalid Employee UUID "
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Deletes an Employee",
+        "description": "Removes Employee from DB",
+        "operationId": "deleteEmployee",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Employee id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Employee deleted"
+          },
+          "401": {
+            "description": "Wrong input"
+          }
+        }
+      }
+    },
+    "/departments": {
+      "get": {
+        "tags": [
+          "departments"
+        ],
+        "summary": "Get Departments list",
+        "description": "Gel list with all departments in DB",
+        "operationId": "getDepartments",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Department"
+              }
+            }
+          },
+          "404": {
+            "description": "DB is empty"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "departments"
+        ],
+        "summary": "Add a new department",
+        "description": "",
+        "operationId": "addDepartment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "department",
+            "description": "Employee object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Department"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/department/{uuid}": {
+      "get": {
+        "tags": [
+          "department"
+        ],
+        "summary": "Find employee by ID",
+        "description": "Returns a single department",
+        "operationId": "getDepartmentById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "ID of department",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Department"
+            }
+          },
+          "404": {
+            "description": "Department not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "department"
+        ],
+        "summary": "Update an existing department",
+        "description": "",
+        "operationId": "updateDepartment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "ID of department",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Department",
+            "description": "Department object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Department"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Wrong data"
+          },
+          "404": {
+            "description": "Invalid Department UUID "
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "department"
+        ],
+        "summary": "Deletes an Department",
+        "description": "Removes Department from DB",
+        "operationId": "deleteDepartment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Department id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Department deleted"
+          },
+          "401": {
+            "description": "Wrong input"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Department": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "uuid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "Main office"
+        },
+        "employees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Employee"
+          }
+        }
+      }
+    },
+    "Employee": {
+      "type": "object",
+      "required": [
+        "employee_name",
+        "date_of_birth",
+        "salary"
+      ],
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "employee_name": {
+          "type": "string",
+          "example": "Louis Armstrong"
+        },
+        "date_of_birth": {
+          "type": "string",
+          "example": "2011-11-21"
+        },
+        "salary": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1300
+        }
+      }
+    }
+  }
+}

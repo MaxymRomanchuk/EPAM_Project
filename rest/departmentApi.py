@@ -7,6 +7,12 @@ from service.departmentService import DepartmentService
 
 
 class DepartmentAPI(Resource):
+    '''
+    Department Resourse
+
+
+    Supports GET (with UUID and without), POST, PUT and DELETE requests
+    '''
     schema = DepartmentSchema()
     service = DepartmentService
 
